@@ -2,6 +2,7 @@ import React from "react";
 import { View, SafeAreaView, Image } from "react-native";
 import tw from "twrnc";
 import { NavOptions } from "../components/NavOptions.component";
+import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 
 export const HomeScreen = () => {
   return (
@@ -15,6 +16,26 @@ export const HomeScreen = () => {
           }}
           source={{
             uri: "https://links.papareact.com/gzs",
+          }}
+        />
+        <AutocompleteDropdown
+          clearOnFocus={false}
+          closeOnBlur={true}
+          closeOnSubmit={false}
+          dataSet={[
+            { id: "1", title: "Alpha" },
+            { id: "2", title: "Beta" },
+            { id: "3", title: "Gamma" },
+          ]}
+          inputContainerStyle={{
+            backgroundColor: "transparent",
+          }}
+          textInputProps={{
+            placeholder: "Where from?",
+          }}
+          suggestionsListContainerStyle={{
+            backgroundColor: "white",
+            zIndex: 300,
           }}
         />
         <NavOptions />
