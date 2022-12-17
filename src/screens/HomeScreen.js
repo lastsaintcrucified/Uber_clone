@@ -2,7 +2,7 @@ import React from "react";
 import { View, SafeAreaView, Image } from "react-native";
 import tw from "twrnc";
 import { NavOptions } from "../components/NavOptions.component";
-import PlacesAutocomplete from "../components/placesAutoComplete.component";
+import PlacesAutocomplete from "../components/PlacesAutoComplete.component";
 
 export const HomeScreen = () => {
   return (
@@ -18,7 +18,7 @@ export const HomeScreen = () => {
             uri: "https://links.papareact.com/gzs",
           }}
         />
-        <PlacesAutocomplete />
+        <PlacesAutocomplete placeholderText="Where from?" isOrigin={true} />
         <NavOptions />
       </View>
     </SafeAreaView>

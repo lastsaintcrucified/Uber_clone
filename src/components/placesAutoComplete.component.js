@@ -1,15 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { memo, useCallback, useRef, useState } from "react";
 import { Text, View, Dimensions } from "react-native";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 import { useDispatch } from "react-redux";
 import { setDestination, setOrigin } from "../../redux/slices/navSlice";
 
-const PlacesAutocomplete = () => {
+const PlacesAutocomplete = ({
+  placeholderText,
+  isOrigin,
+  inputStyle,
+  navToRider,
+}) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [suggestionsList, setSuggestionsList] = useState(null);
   const dropdownController = useRef(null);
-
+  const navigation = useNavigation();
   const searchRef = useRef(null);
 
   const getSuggestions = useCallback(async (q) => {
@@ -31,10 +37,10 @@ const PlacesAutocomplete = () => {
       .map((item) => ({
         id: item.place_id,
         title: item.display_name,
-        lon: item.lon,
-        lat: item.lat,
+        lon: Number(item.lon),
+        lat: Number(item.lat),
       }));
-    console.log(suggestions);
+    // console.log(suggestions);
     setSuggestionsList(suggestions);
     setLoading(false);
   }, []);
@@ -49,15 +55,20 @@ const PlacesAutocomplete = () => {
       <AutocompleteDropdown
         ref={searchRef}
         // initialValue={'1'}
-        direction={Platform.select({ ios: "down" })}
+        direction="down"
         dataSet={suggestionsList}
         onChangeText={getSuggestions}
         onSelectItem={(item) => {
-          item && dispatch(setOrigin(item));
-          item && dispatch(setDestination(null));
+          item && isOrigin && dispatch(setOrigin(item));
+          item && !isOrigin && dispatch(setDestination(item));
+          item && navToRider && navigation.navigate(navToRider);
         }}
         debounce={600}
-        suggestionsListMaxHeight={Dimensions.get("window").height * 0.4}
+        suggestionsListMaxHeight={
+          isOrigin
+            ? Dimensions.get("window").height * 0.4
+            : Dimensions.get("window").height * 0.3
+        }
         onClear={onClearPress}
         //  onSubmit={(e) => onSubmitSearch(e.nativeEvent.text)}
         onOpenSuggestionsList={onOpenSuggestionsList}
@@ -66,11 +77,15 @@ const PlacesAutocomplete = () => {
         clearOnFocus={false}
         closeOnBlur={false}
         closeOnSubmit={false}
-        inputContainerStyle={{
-          backgroundColor: "transparent",
-        }}
+        inputContainerStyle={
+          inputStyle
+            ? inputStyle
+            : {
+                backgroundColor: "transparent",
+              }
+        }
         textInputProps={{
-          placeholder: "Where from?",
+          placeholder: placeholderText,
         }}
         suggestionsListContainerStyle={{
           backgroundColor: "white",
