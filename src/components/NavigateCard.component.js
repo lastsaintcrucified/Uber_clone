@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, SafeAreaView, View } from "react-native";
 import tw from "twrnc";
+import { NavFavourites } from "./NavFavourites.component";
 import PlacesAutocomplete from "./PlacesAutoComplete.component";
 const inputStyle = {
   backgroundColor: "#DDDDDF",
@@ -19,6 +20,7 @@ export const NavigateCard = () => {
           inputStyle={inputStyle}
           navToRider="RideOptionCard"
         />
+        <NavFavourites />
       </View>
     </SafeAreaView>
   );

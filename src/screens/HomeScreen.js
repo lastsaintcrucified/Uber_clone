@@ -1,6 +1,7 @@
 import React from "react";
 import { View, SafeAreaView, Image } from "react-native";
 import tw from "twrnc";
+import { NavFavourites } from "../components/NavFavourites.component";
 import { NavOptions } from "../components/NavOptions.component";
 import PlacesAutocomplete from "../components/PlacesAutoComplete.component";
 
@@ -20,6 +21,7 @@ export const HomeScreen = () => {
         />
         <PlacesAutocomplete placeholderText="Where from?" isOrigin={true} />
         <NavOptions />
+        <NavFavourites />
       </View>
     </SafeAreaView>
   );

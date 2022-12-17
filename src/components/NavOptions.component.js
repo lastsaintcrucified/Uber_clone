@@ -26,6 +26,7 @@ export const NavOptions = () => {
   const origin = useSelector(selectOrigin);
   return (
     <FlatList
+      style={tw`h-25%`}
       data={data}
       horizontal
       showsHorizontalScrollIndicator={false}

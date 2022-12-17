@@ -31,7 +31,7 @@ const PlacesAutocomplete = ({
       `https://us1.locationiq.com/v1/search?key=pk.664a012aa8784b4300a135a850fb1efa&q=${q}&format=json`
     );
     const items = await response.json();
-    console.log(items);
+    // console.log(items);
     const suggestions = items
       .filter((item) => item.display_name.toLowerCase().includes(filterToken))
       .map((item) => ({

@@ -8,13 +8,15 @@ import { selectOrigin, selectDestination } from "../../redux/slices/navSlice";
 export const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
+  console.log("1", destination);
   const mapRef = useRef(null);
   useEffect(() => {
     if (!origin || !destination) return;
     mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
-      edgePadding: { top: 50, right: 50, bottom: 100, left: 50 },
+      edgePadding: { top: 70, right: 70, bottom: 70, left: 70 },
     });
-  }, [origin, destination]);
+    console.log("2", destination);
+  }, [destination]);
   return (
     <MapView
       ref={mapRef}
@@ -23,8 +25,8 @@ export const Map = () => {
       initialRegion={{
         latitude: origin.lat,
         longitude: origin.lon,
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: 0.04,
+        longitudeDelta: 0.05,
       }}
     >
       {origin?.lat && (
