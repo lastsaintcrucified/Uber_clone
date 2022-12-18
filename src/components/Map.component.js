@@ -13,11 +13,14 @@ export const Map = () => {
   useEffect(() => {
     if (!destination) return;
 
-    mapRef?.current?.fitToSuppliedMarkers(["destination", "origin"], {
-      edgePadding: { top: 70, right: 70, bottom: 70, left: 70 },
-    });
-    console.log("2", destination);
-  }, [destination]);
+    setTimeout(() => {
+      mapRef?.current?.fitToSuppliedMarkers(["destination", "origin"], {
+        edgePadding: { top: 70, right: 70, bottom: 70, left: 70 },
+      });
+    }, 500);
+
+    // console.log("2", destination);
+  }, [origin, destination]);
 
   return (
     <MapView
