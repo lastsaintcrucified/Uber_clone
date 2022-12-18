@@ -3,8 +3,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { NavigateCard } from "../components/NavigateCard.component";
-import { RideOptionCard } from "../components/RideOption.component";
+import { NavigateCard } from "../screens/subScreen/NavigateCard.component";
+import { RideOptionCard } from "../screens/subScreen/RideOption.component";
 
 const Stack = createNativeStackNavigator();
 

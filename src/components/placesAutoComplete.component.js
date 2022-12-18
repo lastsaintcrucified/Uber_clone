@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React, { memo, useCallback, useRef, useState } from "react";
 import { Text, View, Dimensions } from "react-native";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
@@ -8,14 +7,13 @@ import { setDestination, setOrigin } from "../../redux/slices/navSlice";
 const PlacesAutocomplete = ({
   placeholderText,
   isOrigin,
+  isDestination,
   inputStyle,
-  navToRider,
 }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [suggestionsList, setSuggestionsList] = useState(null);
   const dropdownController = useRef(null);
-  const navigation = useNavigation();
   const searchRef = useRef(null);
 
   const getSuggestions = useCallback(async (q) => {
@@ -59,9 +57,8 @@ const PlacesAutocomplete = ({
         dataSet={suggestionsList}
         onChangeText={getSuggestions}
         onSelectItem={(item) => {
-          item && isOrigin && dispatch(setOrigin(item));
-          item && !isOrigin && dispatch(setDestination(item));
-          item && navToRider && navigation.navigate(navToRider);
+          item && isOrigin && !isDestination && dispatch(setOrigin(item));
+          item && !isOrigin && isDestination && dispatch(setDestination(item));
         }}
         debounce={600}
         suggestionsListMaxHeight={

@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, SafeAreaView, View } from "react-native";
 import tw from "twrnc";
-import { NavFavourites } from "./NavFavourites.component";
-import PlacesAutocomplete from "./PlacesAutoComplete.component";
+import { NavFavourites } from "../../components/NavFavourites.component";
+import { NavigateCardBottom } from "../../components/NavigateCardBottom.component";
+import PlacesAutocomplete from "../../components/PlacesAutoComplete.component";
 const inputStyle = {
   backgroundColor: "#DDDDDF",
-  padding: 5,
+  padding: 3,
   marginTop: 10,
   marginHorizontal: 10,
 };
@@ -17,11 +18,12 @@ export const NavigateCard = () => {
         <PlacesAutocomplete
           placeholderText="Where to?"
           isOrigin={false}
+          isDestination={true}
           inputStyle={inputStyle}
-          navToRider="RideOptionCard"
         />
         <NavFavourites />
       </View>
+      <NavigateCardBottom />
     </SafeAreaView>
   );
 };

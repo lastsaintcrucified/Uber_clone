@@ -11,12 +11,14 @@ export const Map = () => {
   console.log("1", destination);
   const mapRef = useRef(null);
   useEffect(() => {
-    if (!origin || !destination) return;
-    mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
+    if (!destination) return;
+
+    mapRef?.current?.fitToSuppliedMarkers(["destination", "origin"], {
       edgePadding: { top: 70, right: 70, bottom: 70, left: 70 },
     });
     console.log("2", destination);
   }, [destination]);
+
   return (
     <MapView
       ref={mapRef}
@@ -37,7 +39,7 @@ export const Map = () => {
           }}
           title="Origin"
           description={origin.title}
-          identifier="origin"
+          identifier={"origin"}
         />
       )}
       {destination?.lat && (
@@ -48,7 +50,7 @@ export const Map = () => {
           }}
           title="Destination"
           description={destination.title}
-          identifier="destination"
+          identifier={"destination"}
         />
       )}
     </MapView>

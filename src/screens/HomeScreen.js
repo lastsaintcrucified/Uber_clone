@@ -19,7 +19,11 @@ export const HomeScreen = () => {
             uri: "https://links.papareact.com/gzs",
           }}
         />
-        <PlacesAutocomplete placeholderText="Where from?" isOrigin={true} />
+        <PlacesAutocomplete
+          placeholderText="Where from?"
+          isOrigin={true}
+          isDestination={false}
+        />
         <NavOptions />
         <NavFavourites />
       </View>

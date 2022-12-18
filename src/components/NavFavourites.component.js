@@ -44,8 +44,8 @@ export const NavFavourites = () => {
             size={18}
           />
           <View>
-            <Text style={tw`text-lg font-semibold`}>{item.location}</Text>
-            <Text style={tw`text-gray-500`}>{item.destination}</Text>
+            <Text style={tw`text-base font-semibold`}>{item.location}</Text>
+            <Text style={tw`text-sm text-gray-500`}>{item.destination}</Text>
           </View>
         </TouchableOpacity>
       )}
